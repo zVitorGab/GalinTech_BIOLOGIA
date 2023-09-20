@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+})->name('index');
+
+Route::resource('integrante', 'IntegranteController');
+Route::resource('atividade', 'AtividadeController');
+Route::resource('material', 'MaterialController');
+
+Route::prefix('/site')->group(function() {
+    Route::get('/atividade', 'SiteController@getAtividades')->name('site.atividade');
+    Route::get('/integrante', 'SiteController@getIntegrantes')->name('site.integrante');
+    Route::get('/material', 'SiteController@getMateriais')->name('site.material');
 });
