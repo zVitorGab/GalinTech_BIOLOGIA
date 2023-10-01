@@ -28,13 +28,15 @@
             box-shadow: 0 0 0 0.1rem green !important;
         }
     </style>
+
+    <link rel="stylesheet" href="../../css/app.css">
 </head>
 <body>
-    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-success">
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark">
         <div class="container-fluid">
             <a href="{{route('index')}}" class="navbar-brand">
                 <img src="{{asset('img/natureza.png')}}" width="64" height="64">
-                <span class="ms-3 fs-5 fw-bold">BioProject</span>
+                <span class="ms-3 fs-5 fw-bold">GalinTech</span>
             </a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#itens">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-menu-button-wide" viewBox="0 0 16 16">
@@ -115,9 +117,9 @@
         @yield('conteudo')
     </div>
 </body>
-<nav class="navbar fixed-bottom navbar-dark bg-success">
-    <div class="container-fluid">
-        <span class="text-white fw-light"><b>Projeto Multidisciplinar:</b> Biologia II + Desenvolvimento Web</span>
+<nav class="navbar fixed-bottom navbar-dark">
+    <div class="container-fluid footer-span">
+        <span class="text-white fw-light"><b>Desenvolvido com ** por GalinTech<b></span>
     </div>
 </nav>
 

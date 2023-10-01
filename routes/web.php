@@ -26,3 +26,4 @@ Route::prefix('/site')->group(function() {
     Route::get('/integrante', 'SiteController@getIntegrantes')->name('site.integrante');
     Route::get('/material', 'SiteController@getMateriais')->name('site.material');
 });
+

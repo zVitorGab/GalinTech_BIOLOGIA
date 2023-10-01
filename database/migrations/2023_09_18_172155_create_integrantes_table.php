@@ -15,6 +15,10 @@ class CreateIntegrantesTable extends Migration
     {
         Schema::create('integrantes', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->text('biografia');
+            $table->string('foto')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

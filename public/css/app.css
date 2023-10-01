@@ -1,0 +1,82 @@
+body{
+    color: #4792c0;
+
+}
+body nav{
+    background-color: #4792c0;
+}
+.card-header{
+    background-color: #4792c0 !important;
+}
+
+.dropdown-menu li a{
+    background-color: #fff !important;
+}
+.dropdown-menu li a svg{
+    fill: #4792c0;
+}
+
+a{
+    background-color: #4792c0 !important;
+}
+a svg{
+    fill: #fff;
+}
+td a{
+    background-color: transparent !important;
+}
+
+svg{
+    fill: #4792c0;
+}
+
+
+/*========= BOTOES/UTILITARIOS =========*/
+.text-success{
+    color: #4792c0 !important;
+}
+.border-success{
+    border-color: #4792c0 !important ;
+}
+.bg-success{
+    background-color: #4792c0 !important;
+}
+.btn-success{
+    background-color: #4792c0 !important;
+    border: solid 1px #4792c0;
+}
+.btn-success svg{
+    fill: #fff;
+}
+.btn-success:hover{
+    background-color: #377094 !important;
+    border: 1px solid #377094 ;
+}
+.btn-success:focus{
+    box-shadow: 0px 0px 5px 1px #4792c0;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
+.btn-danger{
+    background-color: #dc3545 !important;
+}
+
+.bi-camera{
+    fill: #4792c0 !important;
+}
+
+
+/*========= BOTOES/UTILITARIOS =========*/
+
+
+
+.footer-span{
+    padding: 8px;
+    display: block !important;
+    text-align: center;
+}

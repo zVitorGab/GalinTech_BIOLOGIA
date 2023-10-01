@@ -2,83 +2,98 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Integrante;
 use Illuminate\Http\Request;
 
-class IntegranteController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class IntegranteController extends Controller {
+    
+    private $path = "fotos/integrantes";
+
+    public function index() {
+        
+        $data = Integrante::orderBy('nome')->get();
+        return view('integrante.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('integrante.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        
+        // php artisan storage:link
+        // Colocar os arquivos de imagem dentro da pasta "/storage/app/public"
+
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'biografia' => 'required|max:1000|min:20',
+            'foto' => 'required'
+        ];
+
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+
+        $request->validate($regras, $msgs);
+
+        if($request->hasFile('foto')) {
+
+            // Insert no Banco
+            $reg = new Integrante();
+            $reg->nome = $request->nome;
+            $reg->biografia = $request->biografia;
+            $reg->save();    
+
+            // Upload da Foto
+            $id = $reg->id;
+            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+            $nome_arq = $id.'_'.time().'.'.$extensao_arq;
+            $request->file('foto')->storeAs("public/$this->path", $nome_arq);
+            $reg->foto = $this->path."/".$nome_arq;
+            $reg->save();
+        }
+        
+        return redirect()->route('integrante.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function show($id) {
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        $reg = Integrante::find($id);
+
+        return view('integrante.edit', compact('id', 'reg'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+        
+        $reg = Integrante::find($id);
+
+        $reg->nome = $request->nome;
+        $reg->biografia = $request->biografia;
+
+        if($request->hasFile('foto')) {
+            // Upload da Foto
+            $id = $reg->id;
+            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+            $nome_arq = $id.'_'.time().'.'.$extensao_arq;
+            $request->file('foto')->storeAs("public/$this->path", $nome_arq);
+            $reg->foto = $this->path."/".$nome_arq;
+        }
+
+        $reg->save();
+
+        return redirect()->route('integrante.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+        
+        $reg = Integrante::find($id);
+        $reg->delete();
+
+        return redirect()->route('integrante.index');
     }
 }

@@ -2,83 +2,96 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use Illuminate\Http\Request;
 
-class MaterialController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class MaterialController extends Controller {
+
+    private $path = "fotos/materials";
+
+    public function index() {
+        $data = Material::orderBy('nome')->get();
+        return view('material.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('material.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+     
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'descricao' => 'required|max:1000|min:20',
+            'foto' => 'required'
+        ];
+
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+
+        $request->validate($regras, $msgs);
+
+        if($request->hasFile('foto')) {
+
+            // Insert no Banco
+            $reg = new Material();
+            $reg->nome = $request->nome;
+            $reg->descricao = $request->descricao;
+            $reg->save();    
+
+            // Upload da Foto
+            $id = $reg->id;
+            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+            $nome_arq = $id.'_'.time().'.'.$extensao_arq;
+            $request->file('foto')->storeAs("public/$this->path", $nome_arq);
+            $reg->foto = $this->path."/".$nome_arq;
+            $reg->save();
+        }
+        
+        return redirect()->route('material.index');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function show($id) {
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        $reg = Material::find($id);
+        return view('material.edit', compact('id', 'reg'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+        
+        $reg = Material::find($id);
+
+        $reg->nome = $request->nome;
+        $reg->descricao = $request->descricao;
+
+        if($request->hasFile('foto')) {
+            // Upload da Foto
+            $id = $reg->id;
+            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+            $nome_arq = $id.'_'.time().'.'.$extensao_arq;
+            $request->file('foto')->storeAs("public/$this->path", $nome_arq);
+            $reg->foto = $this->path."/".$nome_arq;
+        }
+
+        $reg->save();
+
+        return redirect()->route('material.index');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+        
+        $reg = Material::find($id);
+        $reg->delete();
+
+        return redirect()->route('material.index');
+
     }
 }
