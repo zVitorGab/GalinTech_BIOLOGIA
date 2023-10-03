@@ -18,7 +18,7 @@
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-md-2 col-xs-12">
-                                    <img src="{{ asset("storage/$item->foto"); }}" width="128" height="128" style="border-radius: 50%;"> 
+                                    <img src="{{ asset("storage/$item->foto"); }}" width="186" height="220" style="border: 2px solid #4792c0;"> 
                                 </div>
                                 <div class="col-md-10 col-xs-12 d-flex align-items-center justify-content-center">
                                     <p class="text-success fs-6">{{ $item->descricao }}</span>

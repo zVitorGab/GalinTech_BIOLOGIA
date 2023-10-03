@@ -17,10 +17,10 @@
                     <div id="flush_{{$item->id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <div class="row">
-                                <div class="col-md-2 col-xs-12">
-                                    <img src="{{ asset("storage/$item->foto"); }}" width="128" height="128" style="border-radius: 50%;"> 
+                                <div class="col-md-6 col-xs-12">
+                                    <img src="{{ asset("storage/$item->foto"); }}" width="450" height="300" style="border: 2px solid #4792c0;"> 
                                 </div>
-                                <div class="col-md-10 col-xs-12 d-flex align-items-center justify-content-center">
+                                <div class="col-md-6 col-xs-12 d-flex align-items-center justify-content-center">
                                     <p class="text-success fs-6">{{ $item->descricao }}</span>
                                 </div>
                             </div>

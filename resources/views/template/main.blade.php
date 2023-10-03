@@ -30,12 +30,14 @@
     </style>
 
     <link rel="stylesheet" href="../../css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <nav class="navbar sticky-top navbar-expand-md navbar-dark">
         <div class="container-fluid">
             <a href="{{route('index')}}" class="navbar-brand">
-                <img src="{{asset('img/natureza.png')}}" width="64" height="64">
+                <img src="{{asset('img/logoGalintech.png')}}" width="64" height="64">
                 <span class="ms-3 fs-5 fw-bold">GalinTech</span>
             </a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#itens">
@@ -119,7 +121,7 @@
 </body>
 <nav class="navbar fixed-bottom navbar-dark">
     <div class="container-fluid footer-span">
-        <span class="text-white fw-light"><b>Desenvolvido com ** por GalinTech<b></span>
+        <span class="text-white fw-light"><b>Desenvolvido com <i class="fa-solid fa-heart"></i> por GalinTech<b></span>
     </div>
 </nav>
 

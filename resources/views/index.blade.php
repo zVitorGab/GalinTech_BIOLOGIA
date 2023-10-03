@@ -49,6 +49,53 @@
     </div>
 </div>
 
+<div class="card container_bannerGalintech">
+    <div class="containImg">
+        <img src="{{asset('img/principalGalintech.jpg')}}" alt="" class="bannerGalintech">
+    </div>
+    
+</div>
 
+<div class="container container-cardsInformativos">
+    <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+        <img src="{{asset('img/img1card.jpg')}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title">Crie um Galinheiro Sustentável</h5>
+            <p class="card-text">Dê às suas galinhas um lar feliz e contribua para um planeta mais verde com nosso guia prático. Descubra como fazer um galinheiro ecologicamente correto e colha ovos frescos com consciência ambiental. Comece hoje!</p>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="card mb-3 cardInformativo-meio" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{asset('img/img2card.jpg')}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Torne-se Sustentável com Galinhas</h5>
+        <p class="card-text">Descubra como a criação de galinhas pode ser amiga do ambiente. Nosso guia simplificado mostra como você pode fazer a diferença enquanto desfruta de ovos frescos. Vamos começar!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{asset('img/img3card.jpg')}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Galinheiro Ecológico: Passo a Passo</h5>
+        <p class="card-text">Siga nosso roteiro para criar um galinheiro sustentável do zero. Economize recursos, reduza o desperdício e colha os benefícios. Junte-se à comunidade de criadores conscientes do meio ambiente.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 @endsection

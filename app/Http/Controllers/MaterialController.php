@@ -10,7 +10,7 @@ class MaterialController extends Controller {
     private $path = "fotos/materials";
 
     public function index() {
-        $data = Material::orderBy('nome')->get();
+        $data = Material::orderBy('id')->get();
         return view('material.index', compact('data'));
     }
 
