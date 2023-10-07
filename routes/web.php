@@ -17,13 +17,15 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::resource('integrante', 'IntegranteController');
-Route::resource('atividade', 'AtividadeController');
-Route::resource('material', 'MaterialController');
+Route::resource('eixo', 'EixoController');
+Route::resource('curso', 'CursoController');
+Route::resource('disciplina', 'DisciplinaController');
+Route::resource('professor', 'ProfessorController');
+Route::resource('aluno', 'AlunoController');
 
-Route::prefix('/site')->group(function() {
-    Route::get('/atividade', 'SiteController@getAtividades')->name('site.atividade');
-    Route::get('/integrante', 'SiteController@getIntegrantes')->name('site.integrante');
-    Route::get('/material', 'SiteController@getMateriais')->name('site.material');
-});
+Route::get('vinculo', 'ProfessorController@vinculo')->name('professor.vinculo');
+Route::post('vinculoStore', 'ProfessorController@vinculoStore')->name('professor.vinculoStore');
+
+Route::get('matricula/{id}', 'AlunoController@matricula')->name('aluno.matricula');
+Route::post('matriculaStore', 'AlunoController@matriculaStore')->name('aluno.matriculaStore');
 
